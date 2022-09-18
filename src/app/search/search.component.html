@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-2"></div>
+    <div class="col-8">
+      <form [formGroup]="cForm" (ngSubmit)="research($event)">
+        <div class="form-group">
+            <label for="name">Nom du pays, même incomplet et dans n'importe quelle langue supportée par Rest Countries.</label>
+            <input id="name" type="text" class="form-control" placeholder="exemples: Allemagne, Deutschland, Germany" formControlName="inpTranslation">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="alphaCode">Code du pays, un au choix parmi le code alpha 2, alpha 3, le <a href="https://fr.wikipedia.org/wiki/Liste_des_codes_pays_du_CIO">code olympique (CIO).</a> ou <a href="https://fr.wikipedia.org/wiki/ISO_3166-1">numérique (iso 3166-1)</a>.</label>
+            <input id="alphaCode" type="text" class="form-control" placeholder="examples: FR ou FRA, IT ou ITA" formControlName="inpCode">
+        </div>
+        <!-- TODO: plusieurs codes -->
+        <br>
+            <div class="form-group">
+              <label for="cap">Capitale</label>
+              <input id="cap" type="text" class="form-control" placeholder="examples: Paris, Rome" name="cap" formControlName="inpCapital">
+            </div>
+        <br>
+            <div class="form-group">
+              <label for="iso639_1">Nom de la langue ou son code <a href="https://fr.wikipedia.org/wiki/Liste_des_codes_ISO_639-2">ISO 639-2</a></label>
+              <input id="iso639_1" type="text" class="form-control" placeholder="examples: fra, ita)" formControlName="inpLang">
+            </div>
+          <br>
+          <div class="form-group">
+                  <label for="reg">Continent</label>
+                  <select id="reg" formControlName="inpReg">
+                      <option>Ne pas filtrer</option>
+                      <option>Africa</option>
+                      <option>Americas</option>
+                      <option>Asia</option>
+                      <option>Europe</option>
+                      <option>Oceania</option>
+                  </select>
+          </div>
+          <br>
+          <div class="row">
+              <div class="offset-4"></div>
+              <div class="col-4">
+                <button class="mx-auto btn btn-success" type="submit">Rechercher</button>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <br>
+
+      <div class="row">
+        <div class="offset-4"></div>
+        <div class="col-4 results">
+          <div *ngIf="!searched; else searchedBlock">
+            <div class="list-group">
+              <div class="list-group-item">Vos résultats s'afficheront ici</div>
+            </div>
+          </div>
+          <ng-template #searchedBlock>
+          <div *ngIf="countries.length>0; else noResult">
+            <span>{{countries.length}} pays trouvé(s) avec vos critères</span>
+            <br>
+             <div class="list-group">
+              <a class="list-group-item" *ngFor="let c of countries" (mouseover)='updateSelectedA3C(c.alpha3Code)' (mouseout)="updateSelectedA3C(undefined)" [ngClass]='{"active": c.alpha3Code === selectedAlpha3Code}' [routerLink]="[ '/countryDetail', c.cca3 ]">
+                {{c.name.common}}
+              </a>
+            </div>
+          </div>
+          <ng-template #noResult>
+            <span>Aucun résultat avec ces critères.</span>
+          </ng-template>
+        </ng-template>
+
+        </div>
+      </div>
+      <br>
+      <br>
+</div>
