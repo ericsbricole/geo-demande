@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "GeoDemande": {
+    "geo-demande": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/GeoDemande",
+            "outputPath": "dist/geo-demande",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -51,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GeoDemande:build"
+            "browserTarget": "geo-demande:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GeoDemande:build:production"
+              "browserTarget": "geo-demande:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GeoDemande:build"
+            "browserTarget": "geo-demande:build"
           }
         },
         "test": {
@@ -96,7 +96,7 @@
         }
       }
     },
-    "GeoDemande-e2e": {
+    "geo-demande-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "targets": {
@@ -104,11 +104,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GeoDemande:serve"
+            "devServerTarget": "geo-demande:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GeoDemande:serve:production"
+              "devServerTarget": "geo-demande:serve:production"
             }
           }
         },
